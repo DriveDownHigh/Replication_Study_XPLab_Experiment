@@ -31,7 +31,7 @@ const generateID = function(len) {
 
 const key_press_sc = function(config, CT) {
     return `<div class="magpie-view">
-                <h1 class='magpie-view-title'>${config.title}</h1>
+                <h1 class='magpie-view-title'>Main Experiment</h1>
                 <p class='magpie-view-question magpie-view-qud'>${config.data[CT].QUD}</p>
                 <p class='magpie-response-keypress-header hidden'>
                 <strong>${config.data[CT].key1}</strong> = ${config.data[CT][config.data[CT].key1]},
