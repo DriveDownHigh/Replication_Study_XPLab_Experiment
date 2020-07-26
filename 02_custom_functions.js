@@ -160,7 +160,7 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
                 }
             }
         } else if (e.which === 32 && bool_knowledge && bool_trigger && bool_continuation === false && sentence3.length !== 0) {
-
+            console.log(sentence3);
             let sentence = sentence3;
             if (showNeighbor && wordList.length === 0 && bool_knowledge && bool_trigger && bool_continuation === false) {
                 wordList = createWordList(wordList, counter, sentence);
