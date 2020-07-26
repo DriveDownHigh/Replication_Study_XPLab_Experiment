@@ -11,7 +11,7 @@ const practice = [
         expected: "N",
         sentence_knowledge: "I tried every Italian restaurant in this city.",
         sentence_trigger: "Some of them are very cheap.",
-        sentence_continuation: "The rest are not cheap at all.",
+        sentence_continuation: "",
         wordPos: "next",
         underline: "none",
         filler: false,
