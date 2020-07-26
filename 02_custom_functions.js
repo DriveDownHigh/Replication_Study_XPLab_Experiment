@@ -160,7 +160,6 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
                 }
             }
         } else if (e.which === 32 && bool_knowledge && bool_trigger && bool_continuation === false && sentence3.length !== 0) {
-            console.log(sentence3);
             let sentence = sentence3;
             if (showNeighbor && wordList.length === 0 && bool_knowledge && bool_trigger && bool_continuation === false) {
                 wordList = createWordList(wordList, counter, sentence);
@@ -438,7 +437,7 @@ const key_press_practice_hrf = function (config, CT, magpie, answer_container_ge
             if (keyPressed === config.data[CT].key1 || keyPressed === config.data[CT].key2) {
                 let correctness;
                 const RT = Date.now() - startingTime; // measure RT before anything else
-
+                console.log(config.data[CT].expected + " " + config.data[CT][keyPressed.toUpperCase());
                 if (
                     config.data[CT].expected ===
                     config.data[CT][keyPressed.toUpperCase()]
@@ -447,7 +446,7 @@ const key_press_practice_hrf = function (config, CT, magpie, answer_container_ge
                 } else {
                     correctness = "incorrect";
                 }
-
+                console.log(correctness);
                 if (correctness === "correct") {
                     alert('Your answer is correct! Yey!');
                 } else if (correctness === "incorrect"){
