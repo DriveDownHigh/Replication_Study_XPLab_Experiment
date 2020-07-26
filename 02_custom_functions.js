@@ -437,7 +437,7 @@ const key_press_practice_hrf = function (config, CT, magpie, answer_container_ge
             if (keyPressed === config.data[CT].key1 || keyPressed === config.data[CT].key2) {
                 let correctness;
                 const RT = Date.now() - startingTime; // measure RT before anything else
-                console.log(config.data[CT].expected + " " + config.data[CT][keyPressed.toUpperCase());
+                console.log(config.data[CT].expected + " " + config.data[CT][keyPressed.toUpperCase()]);
                 if (
                     config.data[CT].expected ===
                     config.data[CT][keyPressed.toUpperCase()]
