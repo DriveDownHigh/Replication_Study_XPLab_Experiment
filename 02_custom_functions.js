@@ -201,6 +201,7 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
             if (e.which === 32 && spaceCounter === sentence3.length && bool_knowledge && bool_trigger && bool_continuation) {
                 $(".question-container").append(answer_container_generator(config, CT));
                 $(".magpie-response-keypress-header").removeClass("hidden");
+                $(".magpie-view-question").addClass("hidden");
                 bool_question = true;
             }
         } else if(e.which === 78 && bool_question || e.which === 89 && bool_question) {
