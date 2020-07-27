@@ -258,7 +258,7 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
                 trial_data[config.data[CT].key2] =
                     config.data[CT][config.data[CT].key2];
 
-                trial_data = magpieUtils.view.save_config_trial_data(config.data[CT], trial_data);
+                trial_data = magpieUtils.view.save_config_trial_data([config.data[CT], trial_data]);
                 bool_question = false;
 
                 magpie.trial_data.push(trial_data);
