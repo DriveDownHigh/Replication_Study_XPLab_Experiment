@@ -1386,7 +1386,7 @@ const key_press_trials = [
     expected: "N",
     sentence_knowledge: "I can't stand fruit-flavored candy.",
     sentence_trigger: "I make exceptions for lemon lollipops and chewy candy, though.",
-    sentence_continuation: "Do I like cherry gumdrops?",
+    sentence_continuation: "",
     wordPos: "next",
     underline: "none",
     filler: true,
