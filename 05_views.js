@@ -86,8 +86,8 @@ const instructions_main = magpieViews.view_generator("instructions", {
   Again be as fast and accurate as possible. For the main trials, there is no feedback for the comprehension questions.
   <br />
   <br />
-  You are in <strong>group ${group}</strong>, if any problems occur please make a screenshot and write an E-Mail to <strong>jara.treewalker@outlook.de</strong>. 
-  To be able to do so please write down your group and this E-Mail Adress.
+  You are in <strong>group ${group}</strong>, if any problems occur please make a screenshot and write an email to <strong>jara.treewalker@outlook.de</strong>. 
+  To be able to do so please write down your group and this email address.
   <br />
   <br />
   If you are ready for the main trials, please click the button below. `,
