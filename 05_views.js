@@ -46,7 +46,7 @@ const instructions_practice = magpieViews.view_generator("instructions", {
   <br />
   <br />
   This is a self-paced reading task. In the beginning, you will only see dashes. 
-  You will need to press the spacebar to replace the dashes with the word it concealed. Please press the spacebar immediately after reading and understanding a word.
+  You will need to press the spacebar to replace each dash with the word it concealed. Please press the spacebar immediately after reading and understanding a word.
   This causes the previous word to disappear. Please be as fast and accurate as possible with pressing the spacebar.
   <br />
   <br />
