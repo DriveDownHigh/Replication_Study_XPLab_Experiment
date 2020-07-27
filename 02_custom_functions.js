@@ -446,7 +446,6 @@ const key_press_practice_hrf = function (config, CT, magpie, answer_container_ge
                 } else {
                     correctness = "incorrect";
                 }
-                console.log(correctness);
                 if (correctness === "correct") {
                     alert('Your answer is correct! Yey!');
                 } else if (correctness === "incorrect"){
