@@ -17,6 +17,7 @@
     * More about the properties and functions of the wrapping views - https://magpie-ea.github.io/magpie-docs/01_designing_experiments/01_template_views/#wrapping-views
 
 */
+const group = _.sample([0, 1, 2, 3, 4, 5]);
 
 // Every experiment should start with an intro view. Here you can welcome your participants and tell them what the experiment is about
 const intro = magpieViews.view_generator("intro", {
@@ -52,6 +53,10 @@ const instructions_practice = magpieViews.view_generator("instructions", {
   <br />
   After reading the sentences answer the comprehension question of the sentences by pressing Y for Yes and N for No. 
   Again be as fast and accurate as possible.
+  <br />
+  <br />
+  You are in group const ${group}, if any problems occur please make a screenshot and write an E-Mail to jara.treewalker@outlook.de. 
+  To be able to do so please write down your group and this E-Mail Adress.
   <br />
   <br />
   Before you start officially, you will get ten practice trials to make yourself familiar with the tasks.`,
@@ -149,7 +154,6 @@ const practice_trials = magpieViews.view_generator("key_press", {
 * All about the properties of trial views
 * https://magpie-ea.github.io/magpie-docs/01_designing_experiments/01_template_views/#trial-views
 */
-const group = _.sample([0, 1, 2, 3, 4, 5]);
 const trials = key_press_trials[group];
 
 const experiment_data = {
