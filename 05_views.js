@@ -55,7 +55,7 @@ const instructions_practice = magpieViews.view_generator("instructions", {
   Again be as fast and accurate as possible.
   <br />
   <br />
-  You are in group const ${group}, if any problems occur please make a screenshot and write an E-Mail to jara.treewalker@outlook.de. 
+  You are in group ${group}, if any problems occur please make a screenshot and write an E-Mail to jara.treewalker@outlook.de. 
   To be able to do so please write down your group and this E-Mail Adress.
   <br />
   <br />
