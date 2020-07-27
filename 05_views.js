@@ -42,15 +42,10 @@ const instructions_practice = magpieViews.view_generator("instructions", {
   trials: 1,
   name: 'instructions',
   title: 'General Instructions',
-  text: `In this experiment, you will be presented with blocks of sentences.
+  text: `In this experiment, you will be presented with blocks of sentences. Each block will be followed by a related yes-or-no question. So, you will in turn need to first read 2-4 sentences and then answer a question.
   <br />
-  Each block will be followed by a related yes-or-no question.
-  <br />
-  So, you will in turn need to first read 2-4 sentences and then answer a question.
   <br />
   This is a self-paced reading task. In the beginning, you will only see dashes. 
-  <br />
-  <br />
   You will need to press the spacebar to replace the dashes with the word it concealed. Please press the spacebar immediately after reading and understanding a word.
   This causes the previous word to disappear. Please be as fast and accurate as possible with pressing the spacebar.
   <br />
@@ -59,7 +54,7 @@ const instructions_practice = magpieViews.view_generator("instructions", {
   Again be as fast and accurate as possible.
   <br />
   <br />
-  Before you start officially, you will get ten practice trials to make yourself familiar with the tasks. `,
+  Before you start officially, you will get ten practice trials to make yourself familiar with the tasks.`,
   buttonText: 'Go to Practice Trials'
 });
 
@@ -67,28 +62,25 @@ const instructions_main = magpieViews.view_generator("instructions", {
   trials: 1,
   name: 'instructions',
   title: 'General Instructions',
-  text: `Thank you for doing the practice trials, you can now continue with the Main Experiment Trials.
-  As a reminder shortly look through the instructions again.
+  text: `Thank you for doing the practice trials, you can now continue with the Main Experiment Trials. Please shortly look through the instructions again as a reminder.
   <br />
   <br />
-  You will again be presented with blocks of sentences.
-  <br />
+  You will be presented with blocks of sentences.
   Each block will be followed by a related yes-or-no question.
-  <br />
   So, you will in turn need to first read 2-4 sentences and then answer a question.
   <br />
-  This is a self-paced reading task. In the beginning, you will only see dashes. 
   <br />
+  This is a self-paced reading task. In the beginning, you will only see dashes. 
   <br />
   You will need to press the spacebar to replace the dashes with the word it concealed. Please press the spacebar immediately after reading and understanding a word.
   This causes the previous word to disappear. Please be as fast and accurate as possible with pressing the spacebar.
   <br />
   <br />
   After reading the sentences answer the comprehension question of the sentences by pressing Y for Yes and N for No. 
-  Again be as fast and accurate as possible.
+  Again be as fast and accurate as possible. For the main trials, there is no feedback for the comprehension questions.
   <br />
   <br />
-  Before you start officially, you will get some practice trials to make yourself familiar with the tasks. `,
+  If you are ready for the main trials, please click the button below. `,
   buttonText: 'Go to Trials'
 });
 
@@ -98,7 +90,7 @@ const post_test = magpieViews.view_generator("post_test", {
   trials: 1,
   name: 'post_test',
   title: 'Additional information',
-  text: 'Answering the following questions is optional, but your answers will help us analyze our results.',
+  text: 'Answering the following questions is optional, but your answers will help us analyze our results better.',
 
 
   buttonText: 'Go on',
@@ -112,7 +104,7 @@ const post_test = magpieViews.view_generator("post_test", {
   edu_graduated_college: 'College',
   edu_higher_degree: 'University',
   languages_question: 'Level of English based on European Reference',
-  languages_more: '(e.g. A1-C2, if you had no problems with the questions take at least B1)',
+  languages_more: '(e.g. native speaker or A1-C2, if you had no problems with the questions take at least B1)',
   comments_question: 'Further Comments'
 });
 

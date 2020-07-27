@@ -275,8 +275,8 @@ const key_press_practice_sc = function(config, CT) {
     return `<div class="magpie-view">
                 <h1 class='magpie-view-title'>${config.data[CT].title}</h1>
                 <p class='magpie-view-question magpie-view-qud'>${config.data[CT].QUD}</p>
-                <p class='description' > At first you will get some practice trials now. 
-                After answering the comprehension question you will therefor get feedback. <br />
+                <p class='description' > At first you will get some practice trials. 
+                After answering the comprehension question you will get feedback. <br />
                 <br />
                 Press Space to begin.</p>
                 <p class='magpie-response-keypress-header hidden'>
