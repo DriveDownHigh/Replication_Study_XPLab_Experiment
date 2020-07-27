@@ -112,8 +112,8 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
                 spaceCounter++;
             } else if (e.which === 32 && spaceCounter === sentence.length && bool_show_sentence) {
                 if (showNeighbor) {
-                    readingTimes_knowledge.push(Date.now());
                     wordList[spaceCounter - 1].classList.add("hidden");
+                    readingTimes_knowledge.push(Date.now());
                     wordList = [];
                     spaceCounter = 0;
                     bool_knowledge = true;
@@ -150,8 +150,8 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
                 spaceCounter++;
             } else if (e.which === 32 && spaceCounter === sentence.length && bool_show_sentence) {
                 if (showNeighbor) {
-                    readingTimes_knowledge.push(Date.now());
                     wordList[spaceCounter - 1].classList.add("hidden");
+                    readingTimes_trigger.push(Date.now());
                     wordList = [];
                     spaceCounter = 0;
                     bool_trigger = true;
@@ -187,8 +187,8 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
                 spaceCounter++;
             } else if (e.which === 32 && spaceCounter === sentence.length && bool_show_sentence) {
                 if (showNeighbor) {
-                    readingTimes_knowledge.push(Date.now());
                     wordList[spaceCounter - 1].classList.add("hidden");
+                    readingTimes_continuation.push(Date.now());
                     wordList = [];
                     // spaceCounter = 0;
                     bool_continuation = true;
