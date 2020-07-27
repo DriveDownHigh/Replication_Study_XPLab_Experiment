@@ -55,8 +55,8 @@ const instructions_practice = magpieViews.view_generator("instructions", {
   Again be as fast and accurate as possible.
   <br />
   <br />
-  You are in <strong>group ${group}</strong>, if any problems occur please make a screenshot and write an E-Mail to <strong>jara.treewalker@outlook.de</strong>. 
-  To be able to do so please write down your group and this E-Mail Adress.
+  You are in <strong>group ${group}</strong>, if any problems occur please make a screenshot and write an email to <strong>jara.treewalker@outlook.de</strong>. 
+  To be able to do so please write down your group and this email address.
   <br />
   <br />
   Before you start officially, you will get ten practice trials to make yourself familiar with the tasks.`,
