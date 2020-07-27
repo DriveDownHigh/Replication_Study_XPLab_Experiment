@@ -100,9 +100,9 @@ const post_test = magpieViews.view_generator("post_test", {
   gender_female: 'female',
   gender_other: 'diverse',
   edu_question: 'Education',
-  edu_graduated_high_school: 'High School',
-  edu_graduated_college: 'College',
-  edu_higher_degree: 'University',
+  edu_graduated_high_school: 'High School or lower',
+  edu_graduated_college: 'Bachelor or Master',
+  edu_higher_degree: 'Beyond Master',
   languages_question: 'Level of English based on European Reference',
   languages_more: '(e.g. native speaker or A1-C2, if you had no problems with the questions take at least B1)',
   comments_question: 'Further Comments'
