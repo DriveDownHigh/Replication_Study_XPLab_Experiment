@@ -255,7 +255,7 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
                     reactionTimes_knowledge: reactionTimes_knowledge,
                     reactionTimes_trigger: reactionTimes_trigger,
                     reactionTimes_continuation: reactionTimes_continuation,
-                    group: group
+                    group: config.group
                 };
 
                 trial_data[config.data[CT].key1] =
