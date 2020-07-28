@@ -29,6 +29,7 @@ const generateID = function(len) {
 };
 // Declare your helper functions here
 
+// The stimulus container for the main trial which includes things that are generally visible in the view and only occasionally hidden
 const key_press_sc = function(config, CT) {
     return `<div class="magpie-view">
                 <h1 class='magpie-view-title'>Main Experiment</h1>
@@ -44,11 +45,13 @@ const key_press_sc = function(config, CT) {
             </div>`;
 }
 
+// Answer container for the main trial which adds the question to the view
 const question = function(config, CT) {
     return `<div class='magpie-view-answer-container'>
                     <p class='magpie-view-question'>${config.data[CT].question}</p>`;
 }
 
+// Function to create the wordList used to display the sentences word by word
 const createWordList = function(wordList, counter, sentence) {
     // creates the sentence
     sentence.map((word) => {
@@ -63,16 +66,22 @@ const createWordList = function(wordList, counter, sentence) {
     return wordList = $(".word").toArray();
 }
 
-const key_press_hrf = function (config, CT, magpie, answer_container_generator, startingTime, group) {
+// Handle Response Function for the main trials
+const key_press_hrf = function (config, CT, magpie, answer_container_generator, startingTime) {
+    // turns the sentences provided via the views file into arrays
     const sentence1 = config.data[CT].sentence_knowledge.trim().split(" ");
     const sentence2 = config.data[CT].sentence_trigger.trim().split(" ");
     const sentence3 = config.data[CT].sentence_continuation.trim().split(" ");
+    //  Counts how much words were already displayed 
     let spaceCounter = 0;
+    // later set via the createWordList function
     let wordList = [];
     let readingTimes_knowledge = [];
     let readingTimes_trigger = [];
     let readingTimes_continuation = [];
+    //  counter used to determine the number of dashes in createWordList
     let counter = 0;
+    //  booleans to determine which sentences were already shown
     let bool_knowledge = false;
     let bool_trigger = false;
     let bool_continuation = false;
@@ -83,6 +92,7 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
     let wordPos = config.data[CT].wordPos === undefined ? "next" : config.data[CT].wordPos;
     let showNeighbor = wordPos === "next";
 
+    // creates the first sentence and shows its dashes
     let sentence = sentence1;
     if (showNeighbor && wordList.length === 0 && bool_knowledge === false) {
         wordList = createWordList(wordList, counter, sentence);
@@ -90,53 +100,66 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
     document.getElementById(`line${spaceCounter}`).classList.remove("hidden");
     bool_show_sentence = true;
 
+    //  function dealing with the keypresses
     const handleKeyPress = function(e) {
+        // if space is pressed and the knowledge sentence not yet shown completely
         if (e.which === 32 && bool_knowledge === false) {
-
-
+            // if space was pressed and the spaceCounter is not at the end of the current sentence but the dashes of the sentence are shown
             if (e.which === 32 && spaceCounter < sentence.length && bool_show_sentence) {
                 if (showNeighbor) {
+                    // show the next word
                     wordList[spaceCounter].classList.remove("hidden");
                     document.getElementById(`line${spaceCounter}`).classList.add("hidden");
                 } else {
+                    // only used if sentences are included which shouldn't be presented word by word
                     $(".sentence_container").html(`<span class='word'>${sentence[spaceCounter]}</span>`);
                     if (not_underline){
                         $('.sentence_container .spr-word').addClass('no-line');
                     }
                 }
+                // if the first word was already shown removes it when showing the next
                 if (spaceCounter > 0 && showNeighbor) {
                     wordList[spaceCounter - 1].classList.add("hidden");
                 }
- 
+                // save the readingtime for every word and count to the next word
                 readingTimes_knowledge.push(Date.now());
                 spaceCounter++;
+            // if space is pressed and we are at the end of the sentence
             } else if (e.which === 32 && spaceCounter === sentence.length && bool_show_sentence) {
                 if (showNeighbor) {
+                    // hide the last word, push the last reading time, empty wordList, set back spaceCounter and set bool that sentence was shown
                     wordList[spaceCounter - 1].classList.add("hidden");
                     readingTimes_knowledge.push(Date.now());
                     wordList = [];
                     spaceCounter = 0;
                     bool_knowledge = true;
                     bool_show_sentence = false;
+                    // lastly clear the sentence container
                     $(".sentence_container").html("");
                 } else {
+                 // only used if sentences are included which shouldn't be presented word by word
                     $(".sentence_container").html("");
                 }
             }
+        // if knowledge sentence was shown but trigger not
         } else if (e.which === 32 && bool_knowledge && bool_trigger === false) {
-
+            // creates the second sentence
             let sentence = sentence2;
             if (showNeighbor && wordList.length === 0 && bool_knowledge && bool_trigger === false) {
                 wordList = createWordList(wordList, counter, sentence);
             }
+ 	          // shows the dashes of the sentence
             if (bool_show_sentence === false) {
                 document.getElementById(`line${spaceCounter}`).classList.remove("hidden");
                 bool_show_sentence = true;
+            // if space was pressed and the spaceCounter is not at the end of the current sentence but the dashes of the sentence are shown 
             } else if (e.which === 32 && spaceCounter < sentence.length && bool_show_sentence) {
                 if (showNeighbor) {
+                    // show the next word
                     wordList[spaceCounter].classList.remove("hidden");
                     document.getElementById(`line${spaceCounter}`).classList.add("hidden");
                 } else {
+                    // only used if sentences are included which shouldn't be presented word by word
                     $(".sentence_container").html(`<span class='word'>${sentence[spaceCounter]}</span>`);
                     if (not_underline){
                         $('.sentence_container .spr-word').addClass('no-line');
@@ -158,6 +181,7 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
                     bool_show_sentence = false;
                     $(".sentence_container").html("");
                 } else {
+                    // only used if sentences are included which shouldn't be presented word by word
                     $(".sentence_container").html("");
                 }
             }
@@ -174,6 +198,7 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
                     wordList[spaceCounter].classList.remove("hidden");
                     document.getElementById(`line${spaceCounter}`).classList.add("hidden");
                 } else {
+                    // only used if sentences are included which shouldn't be presented word by word
                     $(".sentence_container").html(`<span class='word'>${sentence[spaceCounter]}</span>`);
                     if (not_underline){
                         $('.sentence_container .spr-word').addClass('no-line');
@@ -194,6 +219,7 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
                     bool_continuation = true;
                     bool_show_sentence = false;
                 } else {
+                    // only used if sentences are included which shouldn't be presented word by word
                     $(".sentence_container").html("");
                 }
             }
@@ -332,6 +358,7 @@ const key_press_practice_hrf = function (config, CT, magpie, answer_container_ge
                     wordList[spaceCounter].classList.remove("hidden");
                     document.getElementById(`line${spaceCounter}`).classList.add("hidden");
                 } else {
+                    // only used if sentences are included which shouldn't be presented word by word
                     $(".sentence_container").html(`<span class='word'>${sentence[spaceCounter]}</span>`);
                     if (not_underline){
                         $('.sentence_container .spr-word').addClass('no-line');
@@ -352,6 +379,7 @@ const key_press_practice_hrf = function (config, CT, magpie, answer_container_ge
                     bool_show_sentence = false;
                     $(".sentence_container").html("");
                 } else {
+                    // only used if sentences are included which shouldn't be presented word by word
                     $(".sentence_container").html("");
                 }
             }
@@ -369,6 +397,7 @@ const key_press_practice_hrf = function (config, CT, magpie, answer_container_ge
                     wordList[spaceCounter].classList.remove("hidden");
                     document.getElementById(`line${spaceCounter}`).classList.add("hidden");
                 } else {
+                    // only used if sentences are included which shouldn't be presented word by word
                     $(".sentence_container").html(`<span class='word'>${sentence[spaceCounter]}</span>`);
                     if (not_underline){
                         $('.sentence_container .spr-word').addClass('no-line');
@@ -389,6 +418,7 @@ const key_press_practice_hrf = function (config, CT, magpie, answer_container_ge
                     bool_show_sentence = false;
                     $(".sentence_container").html("");
                 } else {
+                    // only used if sentences are included which shouldn't be presented word by word
                     $(".sentence_container").html("");
                 }
             }
@@ -406,6 +436,7 @@ const key_press_practice_hrf = function (config, CT, magpie, answer_container_ge
                     wordList[spaceCounter].classList.remove("hidden");
                     document.getElementById(`line${spaceCounter}`).classList.add("hidden");
                 } else {
+                    // only used if sentences are included which shouldn't be presented word by word
                     $(".sentence_container").html(`<span class='word'>${sentence[spaceCounter]}</span>`);
                     if (not_underline){
                         $('.sentence_container .spr-word').addClass('no-line');
@@ -425,6 +456,7 @@ const key_press_practice_hrf = function (config, CT, magpie, answer_container_ge
                     bool_continuation = true;
                     bool_show_sentence = false;
                 } else {
+                    // only used if sentences are included which shouldn't be presented word by word
                     $(".sentence_container").html("");
                 }
             }
