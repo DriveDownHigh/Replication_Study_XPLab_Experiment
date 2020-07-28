@@ -29,7 +29,7 @@ const generateID = function(len) {
 };
 // Declare your helper functions here
 
-// The stimulus container for the main trial which includes things that are generally visible in the view and only occasionally hidden
+// The stimulus container for the main trials which includes things that are generally visible in the view and only occasionally hidden
 const key_press_sc = function(config, CT) {
     return `<div class="magpie-view">
                 <h1 class='magpie-view-title'>Main Experiment</h1>
@@ -165,36 +165,44 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
                         $('.sentence_container .spr-word').addClass('no-line');
                     }
                 }
+                // if the first word was already shown removes it when showing the next
                 if (spaceCounter > 0 && showNeighbor) {
                     wordList[spaceCounter - 1].classList.add("hidden");
                 }
- 
+                // save the readingtime for every word and count to the next word
                 readingTimes_trigger.push(Date.now());
                 spaceCounter++;
+             // if space is pressed and we are at the end of the sentence
             } else if (e.which === 32 && spaceCounter === sentence.length && bool_show_sentence) {
                 if (showNeighbor) {
+                    // hide the last word, push the last reading time, empty wordList, set back spaceCounter and set bool that sentence was shown
                     wordList[spaceCounter - 1].classList.add("hidden");
                     readingTimes_trigger.push(Date.now());
                     wordList = [];
                     spaceCounter = 0;
                     bool_trigger = true;
                     bool_show_sentence = false;
+                    // lastly clear the sentence container
                     $(".sentence_container").html("");
                 } else {
                     // only used if sentences are included which shouldn't be presented word by word
                     $(".sentence_container").html("");
                 }
             }
+         // if the knowledge and trigger sentence were shown, show the continuation sentence until it is completely shown
         } else if (e.which === 32 && bool_knowledge && bool_trigger && bool_continuation === false && sentence3.length !== 0) {
+            // creates the third sentence
             let sentence = sentence3;
             if (showNeighbor && wordList.length === 0 && bool_knowledge && bool_trigger && bool_continuation === false) {
                 wordList = createWordList(wordList, counter, sentence);
             }
+            // shows the dashes of the sentence
             if (bool_show_sentence === false) {
                 document.getElementById(`line${spaceCounter}`).classList.remove("hidden");
                 bool_show_sentence = true;
             } else if (e.which === 32 && spaceCounter < sentence.length && bool_show_sentence) {
                 if (showNeighbor) {
+                    // show the next word
                     wordList[spaceCounter].classList.remove("hidden");
                     document.getElementById(`line${spaceCounter}`).classList.add("hidden");
                 } else {
@@ -204,18 +212,20 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
                         $('.sentence_container .spr-word').addClass('no-line');
                     }
                 }
+                // if the first word was already shown removes it when showing the next
                 if (spaceCounter > 0 && showNeighbor) {
                     wordList[spaceCounter - 1].classList.add("hidden");
                 }
- 
+                // save the readingtime for every word and count to the next word
                 readingTimes_continuation.push(Date.now());
                 spaceCounter++;
+             // if space is pressed and we are at the end of the sentence
             } else if (e.which === 32 && spaceCounter === sentence.length && bool_show_sentence) {
                 if (showNeighbor) {
+                    // hide the last word, push the last reading time, empty wordList, set back spaceCounter and set bool that sentence was shown
                     wordList[spaceCounter - 1].classList.add("hidden");
                     readingTimes_continuation.push(Date.now());
                     wordList = [];
-                    // spaceCounter = 0;
                     bool_continuation = true;
                     bool_show_sentence = false;
                 } else {
@@ -223,7 +233,8 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
                     $(".sentence_container").html("");
                 }
             }
-
+            
+            // 
             if (e.which === 32 && spaceCounter === sentence3.length && bool_knowledge && bool_trigger && bool_continuation) {
                 $(".magpie-view-question").addClass("hidden");
                 $(".question-container").append(answer_container_generator(config, CT));
@@ -302,6 +313,8 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
     $("body").on("keydown", handleKeyPress);
 }
 
+
+// The stimulus container for the practice trials which includes things that are generally visible in the view and only occasionally hidden
 const key_press_practice_sc = function(config, CT) {
     return `<div class="magpie-view">
                 <h1 class='magpie-view-title'>${config.data[CT].title}</h1>
@@ -321,12 +334,16 @@ const key_press_practice_sc = function(config, CT) {
             </div>`;
 }
 
+// Handle Response Function for the practice trials, which functions in the same way as the main trials handle response function
 const key_press_practice_hrf = function (config, CT, magpie, answer_container_generator, startingTime) {
+    // turns the sentences provided via the views file into arrays
     const sentence1 = config.data[CT].sentence_knowledge.trim().split(" ");
     const sentence2 = config.data[CT].sentence_trigger.trim().split(" ");
     const sentence3 = config.data[CT].sentence_continuation.trim().split(" ");
+    //  Counts how much words were already displayed 
     let spaceCounter = 0;
     let wordList = [];
+    //  booleans to determine which sentences were already shown
     let readingTimes_knowledge = [];
     let readingTimes_trigger = [];
     let readingTimes_continuation = [];
@@ -341,20 +358,24 @@ const key_press_practice_hrf = function (config, CT, magpie, answer_container_ge
     let wordPos = config.data[CT].wordPos === undefined ? "next" : config.data[CT].wordPos;
     let showNeighbor = wordPos === "next";
 
+    // creates the first sentence and shows its dashes
     let sentence = sentence1;
     if (showNeighbor && wordList.length === 0 && bool_knowledge === false) {
         wordList = createWordList(wordList, counter, sentence);
     }
     document.getElementById(`line${spaceCounter}`).classList.remove("hidden");
     bool_show_sentence = true;
-
+ 
+    //  function dealing with the keypresses
     const handleKeyPress = function(e) {
         $(".description").addClass("hidden");
+        // if space is pressed and the knowledge sentence not yet shown completely
         if (e.which === 32 && bool_knowledge === false) {
 
-
+           
             if (e.which === 32 && spaceCounter < sentence.length && bool_show_sentence) {
                 if (showNeighbor) {
+                    // show the next word
                     wordList[spaceCounter].classList.remove("hidden");
                     document.getElementById(`line${spaceCounter}`).classList.add("hidden");
                 } else {
@@ -394,6 +415,7 @@ const key_press_practice_hrf = function (config, CT, magpie, answer_container_ge
                 bool_show_sentence = true;
             } else if (e.which === 32 && spaceCounter < sentence.length && bool_show_sentence) {
                 if (showNeighbor) {
+                    // show the next word
                     wordList[spaceCounter].classList.remove("hidden");
                     document.getElementById(`line${spaceCounter}`).classList.add("hidden");
                 } else {
@@ -433,6 +455,7 @@ const key_press_practice_hrf = function (config, CT, magpie, answer_container_ge
                 bool_show_sentence = true;
             } else if (e.which === 32 && spaceCounter < sentence.length && bool_show_sentence) {
                 if (showNeighbor) {
+                    // show the next word
                     wordList[spaceCounter].classList.remove("hidden");
                     document.getElementById(`line${spaceCounter}`).classList.add("hidden");
                 } else {
@@ -452,7 +475,6 @@ const key_press_practice_hrf = function (config, CT, magpie, answer_container_ge
                 if (showNeighbor) {
                     wordList[spaceCounter - 1].classList.add("hidden");
                     wordList = [];
-                    // spaceCounter = 0;
                     bool_continuation = true;
                     bool_show_sentence = false;
                 } else {
