@@ -17,6 +17,7 @@
     * More about the properties and functions of the wrapping views - https://magpie-ea.github.io/magpie-docs/01_designing_experiments/01_template_views/#wrapping-views
 
 */
+// Global random parameter to decide which group a participant belongs to 
 const group = _.sample([0, 1, 2, 3, 4, 5]);
 
 // Every experiment should start with an intro view. Here you can welcome your participants and tell them what the experiment is about
@@ -172,7 +173,7 @@ const experiment_data = {
 // Here, we initialize a normal forced_choice view
 const main_experiment = magpieViews.view_generator("key_press", experiment_data,
 {
-  stimulus_container_generator: key_press_sc,
+  stimulus_container_generator: key_press_sc(group),
   answer_container_generator: question,
   handle_response_function: key_press_hrf,
 });
