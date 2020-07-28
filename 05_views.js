@@ -170,6 +170,8 @@ const experiment_data = {
 
 }
 
+my $config = App::Magpie::Config->instance;
+
 // Here, we initialize a normal forced_choice view
 const main_experiment = magpieViews.view_generator("key_press", experiment_data,
 {
