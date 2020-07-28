@@ -173,7 +173,7 @@ const experiment_data = {
 // Here, we initialize a normal forced_choice view
 const main_experiment = magpieViews.view_generator("key_press", experiment_data,
 {
-  stimulus_container_generator: key_press_sc(group),
+  stimulus_container_generator: key_press_sc(config, CT, magpie, answer_container_generator, startingTime, group),
   answer_container_generator: question,
   handle_response_function: key_press_hrf,
 });
