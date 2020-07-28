@@ -63,7 +63,7 @@ const createWordList = function(wordList, counter, sentence) {
     return wordList = $(".word").toArray();
 }
 
-const key_press_hrf = function (config, CT, magpie, answer_container_generator, startingTime) {
+const key_press_hrf = function (config, CT, magpie, answer_container_generator, startingTime, group) {
     const sentence1 = config.data[CT].sentence_knowledge.trim().split(" ");
     const sentence2 = config.data[CT].sentence_trigger.trim().split(" ");
     const sentence3 = config.data[CT].sentence_continuation.trim().split(" ");
@@ -254,7 +254,8 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
                     condition: config.data[CT].condition,
                     reactionTimes_knowledge: reactionTimes_knowledge,
                     reactionTimes_trigger: reactionTimes_trigger,
-                    reactionTimes_continuation: reactionTimes_continuation
+                    reactionTimes_continuation: reactionTimes_continuation,
+                    group: group
                 };
 
                 trial_data[config.data[CT].key1] =
