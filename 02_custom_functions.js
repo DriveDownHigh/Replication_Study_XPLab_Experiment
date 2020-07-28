@@ -215,7 +215,7 @@ const key_press_hrf = function (config, CT, magpie, answer_container_generator, 
 
                 if (
                     config.data[CT].expected ===
-                    config.data[CT][keyPressed.toUpperCase()]
+                    keyPressed
                 ) {
                     correctness = "correct";
                 } else {
